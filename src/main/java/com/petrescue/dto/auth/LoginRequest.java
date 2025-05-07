@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.util.Objects;
 
+@Data
 public class LoginRequest {
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
@@ -14,6 +15,8 @@ public class LoginRequest {
     @NotBlank(message = "Password is required")
     private String password;
 
+    public LoginRequest() {
+    }
 
     @Override
     public String toString() {
