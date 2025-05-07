@@ -16,4 +16,5 @@ public class ReportResponse {
     private Boolean isResolved;
     private String reporterName;
     private String reporterEmail;
-} 
+
+}

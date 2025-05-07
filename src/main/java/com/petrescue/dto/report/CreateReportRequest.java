@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.Objects;
+
 @Data
 public class CreateReportRequest {
     @NotBlank(message = "Animal type is required")
@@ -17,4 +19,6 @@ public class CreateReportRequest {
 
     @NotNull(message = "Longitude is required")
     private Double longitude;
-} 
+
+
+}
