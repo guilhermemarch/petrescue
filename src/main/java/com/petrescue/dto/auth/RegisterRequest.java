@@ -7,7 +7,7 @@ import lombok.Data;
 
 import java.util.Objects;
 
-
+@Data
 public class RegisterRequest {
 
     @NotBlank(message = "Name is required")
@@ -21,6 +21,8 @@ public class RegisterRequest {
     @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
 
+    public RegisterRequest() {
+    }
 
     @Override
     public boolean equals(Object o) {
