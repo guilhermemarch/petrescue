@@ -7,7 +7,7 @@ import lombok.Data;
 
 import java.util.Objects;
 
-@Data
+
 public class RegisterRequest {
 
     @NotBlank(message = "Name is required")
@@ -22,7 +22,9 @@ public class RegisterRequest {
     private String password;
 
     public RegisterRequest() {
+
     }
+
 
     @Override
     public boolean equals(Object o) {

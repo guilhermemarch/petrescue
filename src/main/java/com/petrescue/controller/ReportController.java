@@ -37,7 +37,7 @@ public class ReportController {
             @RequestParam("image") MultipartFile image,
             Authentication authentication) {
         User user = userService.getUserByEmail(authentication.getName());
-        return ResponseEntity.ok(reportService.createReport(request, image, user.getId()));
+        return ResponseEntity.status(201).body(reportService.createReport(request, image, user.getId()));
     }
 
     @GetMapping("/{id}")
