@@ -1,0 +1,15 @@
+# Java/Maven
+target/
+*.class
+
+# IntelliJ
+.idea/
+*.iml
+
+# Node.js (caso tenha no frontend)
+node_modules/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
