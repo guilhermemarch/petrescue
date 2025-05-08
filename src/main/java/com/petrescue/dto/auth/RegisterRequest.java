@@ -21,6 +21,10 @@ public class RegisterRequest {
     @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
 
+    public RegisterRequest() {
+
+    }
+
 
     @Override
     public boolean equals(Object o) {
