@@ -4,13 +4,13 @@ A complete application to help people report and find lost animals using geoloca
 
 ## Features
 
-- 🔐 Secure user authentication with JWT
-- 📍 Geolocation-based pet reports
-- 📸 Image upload with Cloudinary
-- 🔍 Advanced search with filters
-- 🗺️ Map integration ready
-- 👥 User role management
-- 📱 RESTful API with Swagger
+-  Secure user authentication with JWT
+-  Geolocation-based pet reports
+-  Image upload with Cloudinary
+-  Advanced search with filters
+-  Map integration ready
+-  User role management
+-  RESTful API with Swagger
 
 ## Tech Stack
 
