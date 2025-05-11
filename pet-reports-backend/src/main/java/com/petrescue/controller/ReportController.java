@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 
 import java.util.List;
 import java.util.UUID;
@@ -72,6 +74,7 @@ public class ReportController {
         return ResponseEntity.ok(reportService.markAsResolved(id));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a report")
     public ResponseEntity<Void> deleteReport(@PathVariable UUID id) {
