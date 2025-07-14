@@ -20,5 +20,4 @@ public class CreateReportRequest {
     @NotNull(message = "Longitude is required")
     private Double longitude;
 
-
 }
