@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: petrescue
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - pets-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./pet-reports-backend
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+    environment:
+
+    ports:
+      - "8080:8080"
+    networks:
+      - pets-net
+
+  frontend:
+    build: ./pet-reports-frontend
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:8080/api
+    ports:
+      - "3000:3000"
+    networks:
+      - pets-net
+
+volumes:
+  db:
+
+networks:
+  pets-net:
+    driver: bridge
