@@ -18,7 +18,6 @@ Aplicação completa para ajudar pessoas a reportar e encontrar animais perdidos
 - Visualização interativa de relatórios no mapa
 - Gerenciamento de roles de usuário (admin, user)
 - API RESTful com documentação Swagger
-- Interface responsiva (em desenvolvimento)
 
 ## Tecnologias
 
@@ -40,16 +39,6 @@ Aplicação completa para ajudar pessoas a reportar e encontrar animais perdidos
    mvn spring-boot:run
    ```
 4. Acesse a documentação da API: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-
-### Frontend
-
-1. Instale as dependências com `npm install` ou `pnpm install` no diretório `pet-reports-frontend`
-2. Configure `NEXT_PUBLIC_API_URL` se necessário
-3. Execute:
-   ```bash
-   npm run dev
-   ```
-4. Acesse a interface em [http://localhost:3000](http://localhost:3000)
 
 ## Documentação
 
