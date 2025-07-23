@@ -1,5 +1,16 @@
 # Pet Reports — Sistema de Relatórios de Resgate Animal
 
+[![Java](https://img.shields.io/badge/Java-17-red?logo=java&logoColor=white)](https://www.oracle.com/java/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.3-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
+[![Spring Security](https://img.shields.io/badge/Spring%20Security-JWT-yellowgreen?logo=spring&logoColor=white)](https://spring.io/projects/spring-security)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14-blue?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Hibernate](https://img.shields.io/badge/Hibernate-JPA-brown?logo=hibernate&logoColor=white)](https://hibernate.org/)
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-image%20storage-lightblue?logo=cloudinary)](https://cloudinary.com/)
+[![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-green?logo=swagger)](https://swagger.io/)
+[![Maven](https://img.shields.io/badge/Maven-3.9.6-red?logo=apachemaven)](https://maven.apache.org/)
+[![Lombok](https://img.shields.io/badge/Lombok-Java-orange?logo=lombok)](https://projectlombok.org/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-blue?logo=docker)](https://www.docker.com/)
+
 Aplicação completa para ajudar pessoas a reportar e encontrar animais perdidos usando geolocalização, upload de imagens e colaboração da comunidade, inicialmente focada na cidade de Cerro Largo.
 
 ## Screenshots
