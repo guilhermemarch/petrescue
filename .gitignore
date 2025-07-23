@@ -1,15 +1,30 @@
-# Java/Maven
+# =============== BACKEND (Java / Maven) ===============
 target/
 *.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+*.log
 
-# IntelliJ
-.idea/
-*.iml
-
-# Node.js (caso tenha no frontend)
+# =============== FRONTEND (Node.js / React / Vite) ===============
 node_modules/
 dist/
+build/
+.vite/
+.env
+.env.*
 
-# OS
+# =============== IDEs ===============
+.idea/
+*.iml
+.vscode/
+
+# =============== OS Files ===============
 .DS_Store
 Thumbs.db
+
+# =============== Others ===============
+*.log
+*.tmp
+*.bak

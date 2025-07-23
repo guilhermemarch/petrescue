@@ -27,7 +27,15 @@ services:
         condition: service_healthy
     restart: always
     environment:
-
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/petrescue
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      JWT_SECRET: ksdksjkJKSJKDSJHB@I!Y@!#TJSGDJSGDJHSJgsjdshgdjsgadjasgdajg
+      JWT_EXPIRATION: 86400000
+      CLOUDINARY_CLOUD_NAME: x
+      CLOUDINARY_API_KEY: x
+      CLOUDINARY_API_SECRET: x
+      SERVER_PORT: 8080
     ports:
       - "8080:8080"
     networks:
