@@ -1,4 +1,4 @@
-# Pet Reports — Animal Rescue Reporting System
+# Pet Reports — Sistema de Relatórios de Resgate Animal
 
 [![Java](https://img.shields.io/badge/Java-17-red?logo=java&logoColor=white)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.3-brightgreen?logo=springboot)](https://spring.io/projects/spring-boot)
@@ -8,71 +8,71 @@
 [![Cloudinary](https://img.shields.io/badge/Cloudinary-image%20storage-lightblue?logo=cloudinary)](https://cloudinary.com/)
 [![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-green?logo=swagger)](https://swagger.io/)
 
-A complete system for reporting lost and found pets using intelligent geolocation. Helps the community of Cerro Largo report, search, and rescue pets using interactive maps, cloud image uploads, and advanced location-based search.
+Sistema completo para relatórios de animais perdidos e encontrados usando geolocalização inteligente. Ajuda a comunidade de Cerro Largo a reportar, buscar e resgatar pets usando mapas interativos, upload de imagens na nuvem e busca avançada baseada em localização.
 
 ---
 
-## Features
+## Funcionalidades
 
-### Report Management
-- Create reports with photo, description, and GPS location
-- Image upload via Cloudinary (cloud storage)
-- Precise geolocation (latitude/longitude)
-- Advanced search by type, neighborhood, date, status
-- Mark as resolved when pet is found
-- Edit and delete own reports
+### Gerenciamento de Relatórios
+- Criar relatórios com foto, descrição e localização GPS
+- Upload de imagens via Cloudinary (armazenamento em nuvem)
+- Geolocalização precisa (latitude/longitude)
+- Busca avançada por tipo, bairro, data, status
+- Marcar como resolvido quando o pet for encontrado
+- Editar e deletar próprios relatórios
 
-### Authentication and Authorization
-- User registration with roles (USER/ADMIN)
-- Secure JWT login
-- BCrypt encrypted passwords
-- Role-based access control
+### Autenticação e Autorização
+- Registro de usuário com roles (USER/ADMIN)
+- Login seguro com JWT
+- Senhas criptografadas com BCrypt
+- Controle de acesso baseado em roles
 
-### Visualization and Search
-- Interactive map with lost pet markers
-- Intelligent filters:
-  - Animal type (dog, cat, others)
-  - Neighborhood/location
-  - Sighting date
-  - Status (active/resolved)
-- Geographic proximity search
+### Visualização e Busca
+- Mapa interativo com marcadores de pets perdidos
+- Filtros inteligentes:
+  - Tipo de animal (cachorro, gato, outros)
+  - Bairro/localização
+  - Data de avistamento
+  - Status (ativo/resolvido)
+- Busca por proximidade geográfica
 
-### Administration
-- Admin panel to manage all reports
-- Content moderation
-- Regional report statistics
+### Administração
+- Painel admin para gerenciar todos os relatórios
+- Moderação de conteúdo
+- Estatísticas regionais de relatórios
 
 ---
 
 ## Screenshots
 
-![Login and Registration Screen](imagens/1.png)
+![Tela de Login e Registro](imagens/1.png)
 
-*Secure JWT authentication, allowing new user registration and login to access the system.*
-
----
-
-![Reports Map](imagens/2.png)
-
-*Interactive visualization of all pet reports on map with georeferenced markers.*
+*Autenticação segura com JWT, permitindo novo registro de usuário e login para acessar o sistema.*
 
 ---
 
-![Report Creation Form](imagens/3.png)
+![Mapa de Relatórios](imagens/2.png)
 
-*Intuitive interface to create reports with image upload, description, animal type, and GPS location.*
-
----
-
-![Report Details](imagens/4.png)
-
-*Complete report view with image, pet information, map location, and resolution options.*
+*Visualização interativa de todos os relatórios de pets no mapa com marcadores georreferenciados.*
 
 ---
 
-## Architecture
+![Formulário de Criação de Relatório](imagens/3.png)
 
-### System Architecture
+*Interface intuitiva para criar relatórios com upload de imagem, descrição, tipo de animal e localização GPS.*
+
+---
+
+![Detalhes do Relatório](imagens/4.png)
+
+*Visualização completa do relatório com imagem, informações do pet, localização no mapa e opções de resolução.*
+
+---
+
+## Arquitetura
+
+### Arquitetura do Sistema
 
 ```mermaid
 graph TB
@@ -110,7 +110,7 @@ graph TB
     Cloudinary -.->|Image URLs| Mobile
 ```
 
-### Data Model (ER Diagram)
+### Modelo de Dados (Diagrama ER)
 
 ```mermaid
 erDiagram
@@ -141,12 +141,12 @@ erDiagram
     }
 ```
 
-**Relationships:**
-- One **User** can create multiple **Reports** (1:N)
-- Each **Report** belongs to one **User**
-- **Resolved** indicates if pet was found/rescued
+**Relacionamentos:**
+- Um **User** pode criar múltiplos **Reports** (1:N)
+- Cada **Report** pertence a um **User**
+- **Resolved** indica se o pet foi encontrado/resgatado
 
-### Report Creation Flow
+### Fluxo de Criação de Relatório
 
 ```mermaid
 sequenceDiagram
@@ -157,129 +157,66 @@ sequenceDiagram
     participant DB as PostgreSQL
     participant Cloud as Cloudinary
     
-    User->>Frontend: Fill form<br/>(photo, description, location)
-    Frontend->>Frontend: Get GPS coordinates<br/>(browser)
+    User->>Frontend: Preencher formulário<br/>(foto, descrição, localização)
+    Frontend->>Frontend: Obter coordenadas GPS<br/>(navegador)
     
     Frontend->>+API: POST /api/reports<br/>Authorization: Bearer {token}
-    API->>Security: Validate JWT token
-    Security-->>API: Token valid (userId)
+    API->>Security: Validar token JWT
+    Security-->>API: Token válido (userId)
     
-    alt Image Upload
-        API->>+Cloud: Upload image
-        Cloud-->>-API: Image URL
+    alt Upload de Imagem
+        API->>+Cloud: Upload imagem
+        Cloud-->>-API: URL da imagem
     end
     
-    API->>API: Create Report object<br/>{type, desc, img_url, lat, lng}
-    API->>DB: Save report
-    DB-->>API: Report created (id, timestamp)
+    API->>API: Criar objeto Report<br/>{type, desc, img_url, lat, lng}
+    API->>DB: Salvar relatório
+    DB-->>API: Relatório criado (id, timestamp)
     
     API-->>-Frontend: 201 Created<br/>{id, imageUrl, location}
-    Frontend->>Frontend: Add marker on map
-    Frontend-->>User: Report created successfully
+    Frontend->>Frontend: Adicionar marcador no mapa
+    Frontend-->>User: Relatório criado com sucesso
 ```
 
 ---
 
-## Technologies
+## Tecnologias
 
 ### Backend
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| Java | 17 | Primary language |
-| Spring Boot | 3.2.3 | Web framework |
-| Spring Security | 6.x | JWT authentication |
-| Spring Data JPA | 3.x | ORM persistence |
-| Hibernate | 6.x | ORM implementation |
-| PostgreSQL | 14 | Relational database |
-| Lombok | 1.18.x | Boilerplate reduction |
-| Maven | 3.9.6 | Build and dependencies |
+| Tecnologia | Versão | Propósito |
+|------------|--------|-----------|
+| Java | 17 | Linguagem principal |
+| Spring Boot | 3.2.3 | Framework web |
+| Spring Security | 6.x | Autenticação JWT |
+| Spring Data JPA | 3.x | Persistência ORM |
+| Hibernate | 6.x | Implementação ORM |
+| PostgreSQL | 14 | Banco de dados relacional |
+| Lombok | 1.18.x | Redução de boilerplate |
+| Maven | 3.9.6 | Build e dependências |
 
-### External Services
+### Serviços Externos
 
-| Service | Purpose |
-|---------|---------|
-| Cloudinary | Image storage and CDN |
-| Swagger/OpenAPI | Interactive API documentation |
-| Docker | Containerization and deployment |
+| Serviço | Propósito |
+|---------|-----------|
+| Cloudinary | Armazenamento de imagens e CDN |
+| Swagger/OpenAPI | Documentação interativa da API |
+| Docker | Containerização e deployment |
 
-### Security
+### Segurança
 
-- JWT (JSON Web Tokens) for stateless authentication
-- BCrypt for password hashing
-- CORS configured for allowed origins
-- Role-Based Access Control (USER/ADMIN)
-
----
-
-## Installation
-
-### Prerequisites
-
-- Java 17+
-- Maven 3.9+
-- PostgreSQL 14+
-- Docker (optional, for deployment)
-- Cloudinary account (free tier available)
-
-### Database Configuration
-
-#### Option 1: Local PostgreSQL
-
-```bash
-# Install PostgreSQL
-# Windows: https://www.postgresql.org/download/windows/
-# Linux: sudo apt install postgresql
-
-# Create database
-psql -U postgres
-CREATE DATABASE petrescue_db;
-\q
-```
-
-#### Option 2: Docker
-
-```bash
-cd pet-reports-backend
-docker-compose up -d
-```
-
-### Cloudinary Configuration
-
-1. Create free account at [Cloudinary](https://cloudinary.com/)
-2. Access Dashboard and copy:
-   - Cloud Name
-   - API Key
-   - API Secret
-
-### Application Installation
-
-```bash
-# 1. Clone repository
-git clone https://github.com/your-username/pet-reports.git
-cd pet-reports/pet-reports-backend
-
-# 2. Configure application.properties
-# Edit src/main/resources/application.properties
-# See Configuration section below
-
-# 3. Build project
-mvn clean install
-
-# 4. Run
-mvn spring-boot:run
-
-# Or run JAR
-java -jar target/pet-reports-backend-1.0.0.jar
-```
+- JWT (JSON Web Tokens) para autenticação stateless
+- BCrypt para hash de senhas
+- CORS configurado para origens permitidas
+- Controle de Acesso Baseado em Roles (USER/ADMIN)
 
 ---
 
-## Usage
+## Uso
 
-### Complete Flow Example
+### Fluxo Completo de Exemplo
 
-#### 1. Register user
+#### 1. Registrar usuário
 
 ```bash
 curl -X POST http://localhost:8080/api/auth/register \
@@ -292,7 +229,7 @@ curl -X POST http://localhost:8080/api/auth/register \
   }'
 ```
 
-**Response:**
+**Resposta:**
 ```json
 {
   "id": "a7b3c1d2-e5f6-4a9b-8c7d-1234567890ab",
@@ -314,37 +251,26 @@ curl -X POST http://localhost:8080/api/auth/login \
   }'
 ```
 
-**Response:**
-```json
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "type": "Bearer",
-  "userId": "a7b3c1d2-e5f6-4a9b-8c7d-1234567890ab",
-  "email": "maria@example.com",
-  "role": "USER"
-}
-```
-
-#### 3. Create report (with image)
+#### 3. Criar relatório (com imagem)
 
 ```bash
 curl -X POST http://localhost:8080/api/reports \
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." \
   -F "animalType=DOG" \
-  -F "description=Mixed breed dog, brown coat, lost near the park" \
+  -F "description=Cachorro vira-lata, pelagem marrom, perdido perto do parque" \
   -F "latitude=-28.1234" \
   -F "longitude=-54.9876" \
   -F "neighborhood=Centro" \
-  -F "image=@/path/to/dog-photo.jpg"
+  -F "image=@/caminho/para/foto-cachorro.jpg"
 ```
 
-**Response:**
+**Resposta:**
 ```json
 {
   "id": "b8c4d2e3-f6a7-5b0c-9d8e-2345678901bc",
   "userId": "a7b3c1d2-e5f6-4a9b-8c7d-1234567890ab",
   "animalType": "DOG",
-  "description": "Mixed breed dog, brown coat, lost near the park",
+  "description": "Cachorro vira-lata, pelagem marrom, perdido perto do parque",
   "imageUrl": "https://res.cloudinary.com/yourcloud/image/upload/v123456/pets/abc123.jpg",
   "latitude": -28.1234,
   "longitude": -54.9876,
@@ -355,131 +281,71 @@ curl -X POST http://localhost:8080/api/reports \
 }
 ```
 
-#### 4. Search reports with filters
+#### 4. Buscar relatórios com filtros
 
 ```bash
-# Search for unsolved dogs in Centro neighborhood
+# Buscar cachorros não resolvidos no bairro Centro
 curl -X GET "http://localhost:8080/api/reports/search?type=DOG&neighborhood=Centro&resolved=false" \
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 ```
 
-**Response:**
-```json
-{
-  "total": 5,
-  "reports": [
-    {
-      "id": "b8c4d2e3-f6a7-5b0c-9d8e-2345678901bc",
-      "animalType": "DOG",
-      "description": "Mixed breed dog...",
-      "imageUrl": "https://res.cloudinary.com/...",
-      "latitude": -28.1234,
-      "longitude": -54.9876,
-      "neighborhood": "Centro",
-      "resolved": false
-    }
-  ]
-}
-```
-
-#### 5. Mark report as resolved
+#### 5. Marcar relatório como resolvido
 
 ```bash
 curl -X PATCH http://localhost:8080/api/reports/b8c4d2e3-f6a7-5b0c-9d8e-2345678901bc/resolve \
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 ```
 
-**Response:**
+**Resposta:**
 ```json
 {
   "id": "b8c4d2e3-f6a7-5b0c-9d8e-2345678901bc",
   "resolved": true,
   "resolvedAt": "2025-12-19T10:15:00Z",
-  "message": "Pet found! Thanks for helping the community."
+  "message": "Pet encontrado! Obrigado por ajudar a comunidade."
 }
-```
-
-#### 6. Delete report (owner or admin only)
-
-```bash
-curl -X DELETE http://localhost:8080/api/reports/b8c4d2e3-f6a7-5b0c-9d8e-2345678901bc \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 ```
 
 ---
 
 ## API Endpoints
 
-### Authentication
+### Autenticação
 
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `POST` | `/api/auth/register` | Register new user | No |
-| `POST` | `/api/auth/login` | Login and get JWT | No |
+| Método | Endpoint | Descrição | Auth |
+|--------|----------|-----------|------|
+| `POST` | `/api/auth/register` | Registrar novo usuário | Não |
+| `POST` | `/api/auth/login` | Login e obter JWT | Não |
 
-### Reports
+### Relatórios
 
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `POST` | `/api/reports` | Create report with image | USER |
-| `GET` | `/api/reports` | List all reports | USER |
-| `GET` | `/api/reports/{id}` | Get report by ID | USER |
-| `GET` | `/api/reports/search` | Search with advanced filters | USER |
-| `PATCH` | `/api/reports/{id}/resolve` | Mark as resolved | USER (owner) |
-| `PUT` | `/api/reports/{id}` | Update report | USER (owner) |
-| `DELETE` | `/api/reports/{id}` | Delete report | USER (owner) or ADMIN |
+| Método | Endpoint | Descrição | Auth |
+|--------|----------|-----------|------|
+| `POST` | `/api/reports` | Criar relatório com imagem | USER |
+| `GET` | `/api/reports` | Listar todos os relatórios | USER |
+| `GET` | `/api/reports/{id}` | Buscar relatório por ID | USER |
+| `GET` | `/api/reports/search` | Buscar com filtros avançados | USER |
+| `PATCH` | `/api/reports/{id}/resolve` | Marcar como resolvido | USER (dono) |
+| `PUT` | `/api/reports/{id}` | Atualizar relatório | USER (dono) |
+| `DELETE` | `/api/reports/{id}` | Deletar relatório | USER (dono) ou ADMIN |
 
-### Search Parameters (`/api/reports/search`)
+### Parâmetros de Busca (`/api/reports/search`)
 
-| Parameter | Type | Values | Description |
-|-----------|------|--------|-------------|
-| `type` | string | `DOG`, `CAT`, `BIRD`, `OTHER` | Animal type |
-| `neighborhood` | string | Free text | Neighborhood/location |
-| `resolved` | boolean | `true`, `false` | Resolution status |
-| `startDate` | date | ISO 8601 | Start date |
-| `endDate` | date | ISO 8601 | End date |
-| `latitude` | decimal | -90 to 90 | Latitude for proximity search |
-| `longitude` | decimal | -180 to 180 | Longitude for proximity search |
-| `radius` | integer | km | Search radius (combined with lat/lng) |
+| Parâmetro | Tipo | Valores | Descrição |
+|-----------|------|---------|-----------|
+| `type` | string | `DOG`, `CAT`, `BIRD`, `OTHER` | Tipo de animal |
+| `neighborhood` | string | Texto livre | Bairro/localização |
+| `resolved` | boolean | `true`, `false` | Status de resolução |
+| `startDate` | date | ISO 8601 | Data inicial |
+| `endDate` | date | ISO 8601 | Data final |
+| `latitude` | decimal | -90 a 90 | Latitude para busca por proximidade |
+| `longitude` | decimal | -180 a 180 | Longitude para busca por proximidade |
+| `radius` | integer | km | Raio de busca (combinado com lat/lng) |
 
-### Complete Documentation
+### Documentação Completa
 
-Access interactive Swagger documentation:
+Acesse a documentação interativa Swagger:
 - **Local:** `http://localhost:8080/swagger-ui.html`
-- **Production:** `https://your-api.com/swagger-ui.html`
+- **Produção:** `https://your-api.com/swagger-ui.html`
 
 ---
-
-## Configuration
-
-### application.properties
-
-```properties
-# Server
-server.port=8080
-
-# Database PostgreSQL
-spring.datasource.url=jdbc:postgresql://localhost:5432/petrescue_db
-spring.datasource.username=postgres
-spring.datasource.password=your_password
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=false
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-
-# JWT
-jwt.secret=your-secret-key-min-256-bits-change-in-production
-jwt.expiration=86400000
-
-# Cloudinary
-cloudinary.cloud-name=your_cloud_name
-cloudinary.api-key=your_api_key
-cloudinary.api-secret=your_api_secret
-cloudinary.folder=pet-reports
-
-# File Upload
-spring.servlet.multipart.max-file-size=10MB
-spring.servlet.multipart.max-request-size=10MB
-
-# CORS
-cors.allowed-origins=http://localhost:3000,http://localhost:4200
-```
